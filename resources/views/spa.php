@@ -17,7 +17,7 @@
           <div class="col-md-6">
             <form name="searchForm" ng-submit="search()">
               <div class="input-group">
-                <input type="text" class="form-control input-lg" ng-model="query.search" placeholder="Sök">
+                <input type="text" class="form-control input-lg" ng-model="query.search" placeholder="Sök" autofocus>
                 <span class="input-group-btn">
                   <button class="btn btn-lg btn-danger" type="button" ng-class="{'hide':!query.search}" ng-click="search(true)">
                     <span class="glyphicon glyphicon-remove"></span>
