@@ -1,6 +1,7 @@
 #!/bin/bash
 
+cd /var/www
 composer install
-mysql -uroot -e "create database empdb;"
+mysql -uroot -proot -e "create database empdb;"
 php artisan migrate
 php artisan db:seed
