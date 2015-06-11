@@ -1,0 +1,44 @@
+<form name="modalForm" class="form-horizontal" ng-submit="save()">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()">&times;</button>
+    <h3 class="modal-title" ng-bind-html="title"></h3>
+  </div>
+  <div class="modal-body">
+      <div class="form-group">
+        <label for="firstname" class="col-sm-4 control-label">F&ouml;rnamn</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="firstname" ng-model="item.firstname" placeholder="F&ouml;rnamn">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastname" class="col-sm-4 control-label">Efternamn</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="lastname" ng-model="item.lastname" placeholder="Efternamn">
+        </div>
+      </div>
+       <div class="form-group">
+        <label for="pin" class="col-sm-4 control-label">Personnummer</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="pin" ng-model="item.pin" placeholder="yymmdd-xxxx">
+        </div>
+      </div>
+       <div class="form-group">
+        <label for="date_of_employment" class="col-sm-4 control-label">Anst&auml;llningsdatum</label>
+        <div class="col-sm-8">
+          <input type="date" class="form-control" id="date_of_employment" ng-model="item.date_of_employment" placeholder="YYYY-MM-DD">
+        </div>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <div ng-if="!confirmDelete">
+      <button class="btn btn-success" type="submit" ng-class="{'disabled':modalForm.$pristine || modalForm.$invalid}">Spara</button>
+      <button class="btn btn-danger pull-left" type="button" ng-click="showconfirm(true)">Radera</button>
+      <button class="btn btn-default" type="button" ng-click="cancel()">Avbryt</button>
+    </div>
+    <div ng-if="confirmDelete">
+      <p class="pull-left"><strong>&Auml;r du s&auml;ker p&aring; att du vill radera posten?</strong></p>
+      <button class="btn btn-default" type="button" ng-click="showconfirm(false)">Nej</button>
+      <button class="btn btn-danger" type="button" ng-click="delete()">Ja</button>
+    </div>
+  </div>
+</form>
