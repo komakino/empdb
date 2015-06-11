@@ -59,8 +59,23 @@ angular.module('empdb', ['ui.bootstrap','ngResource','ngSanitize'])
       }
     });
 
-    modalInstance.result.then(function (item) {
-      query();
+    modalInstance.result.then(function (result) {
+      if(id){
+        $scope.employees.map(function(o,i,a){
+          if(o.id === id){
+            switch(result.action){
+              case 'deleted':
+                a.splice(i,1);
+                break;
+              case 'saved':
+                a[i] = result.item;
+                break;
+            }
+          }
+        });
+      } else {
+        query();
+      }
     });
   }
 
@@ -99,18 +114,18 @@ angular.module('empdb', ['ui.bootstrap','ngResource','ngSanitize'])
 
   $scope.save = function () {
     $scope.item.$save(function(item){
-      $modalInstance.close();
+      $modalInstance.close({action:'saved', item: item});
     });
   };
 
   $scope.delete = function(){
     $scope.item.$delete(function(){
-      $modalInstance.close();
+      $modalInstance.close({action:'deleted'});
     });
   }
 
   $scope.cancel = function () {
-    $modalInstance.dismiss();
+    $modalInstance.dismiss('cancel');
   };
 
   $scope.showconfirm = function(show){
